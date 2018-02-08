@@ -8,8 +8,6 @@ from twython import Twython
 if sys.version_info[0] < 3:
     raise Exception("Designed to only run on Python 3")
 
-TODAY_DATE = datetime.date.today()
-
 CONSUMER_KEY = '***'
 CONSUMER_SECRET = '***'
 ACCESS_TOKEN = '***'
@@ -21,6 +19,11 @@ RUN_EVERY_N_HOURS = 24*(60*60) # 24*(60*60) == 24 hours x (60 seconds per 60 min
 
 def twitter_handle():
     return Twython(CONSUMER_KEY, CONSUMER_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
+
+def get_date():
+    """ returns today's date as string, e.g. 'January 01' """
+    today = datetime.date.today() # ex 2015-10-31
+    return today.strftime("%B %d")
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
