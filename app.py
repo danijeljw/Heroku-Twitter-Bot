@@ -2,7 +2,6 @@ import sys
 import datetime
 from time import sleep
 import tweepy
-from twython import Twython
 
 # Ensure Python 3 is running
 if sys.version_info[0] < 3:
