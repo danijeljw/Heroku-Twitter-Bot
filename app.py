@@ -1,3 +1,4 @@
+import os
 import sys
 import datetime 
 from time import sleep
@@ -26,23 +27,23 @@ RUN_EVERY_N_HOURS = 24
 RUN_TIMER = RUN_EVERY_N_HOURS*(60*60)  # 24*(60*60) == 24 hours x (60 seconds per 60 mins)
 
 
-def get_date():
-    today_date = datetime.date.today()
-    return today_date
 
 
-def read_tweet_list():
-    with open(TWEET_LIST_FILE) as fp:  
-        line = fp.readline()
-    while line:
-        if str(today_date) in line[0:10]:
-            print(line[11:])
+def main():
+    if not os.path.isfile(PRINT_FILE):
+        print("File path {} does not exist. Exiting...".format(filepath))
+        sys.exit()
+
+    with open(PRINT_FILE) as fp:
+        for line in fp:
+            if str(datetime.date.today()) in line:
+                return print(line[11:])
+
+if __name__ == '__main__':
+    main()
 
 
-
-
-
-
+"""
 
 
 
@@ -75,12 +76,11 @@ def get_daily_tweet():
     else:
         return event_text[0:137] + "..."
 
-"""
+
 import datetime as d
 today = d.date.today()
 if str(today) in ['2018-02-08']:
 ...   print("yep!")
-"""
 
 def main():
     handle = twitter_handle()
@@ -94,3 +94,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+"""
